@@ -1,31 +1,12 @@
 <?php
 /**
  *   API REST Php
- *   Version 0.0.1a
- *   Contribution: Julien JEAN
+ *   Créateur: Julien JEAN
  *
  *
- *    MIT License
- *
+ *    Licence Creative Commons BY-SA 3.0 FR
+ *    La licence est présente à la racine du projet
  *    Copyright (c) 2020 Julien JEAN
- *
- *    Permission is hereby granted, free of charge, to any person obtaining a copy
- *    of this software and associated documentation files (the "Software"), to deal
- *    in the Software without restriction, including without limitation the rights
- *    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *    copies of the Software, and to permit persons to whom the Software is
- *    furnished to do so, subject to the following conditions:
- *
- *    The above copyright notice and this permission notice shall be included in all
- *    copies or substantial portions of the Software.
- *
- *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *    SOFTWARE.
  *
  *
  */
@@ -44,7 +25,7 @@ $security_include_identifier = crc32(mt_rand()); // Empêche l'utilisation des a
  *                                                              *
  ****************************************************************/
 require_once 'config.env.php';
-$api_version = '1.0a';
+$api_version = '1.3b';
 $time_app_exec = microtime(true); // debut du microtime pour <result_generated_in>
 date_default_timezone_set('Europe/Paris'); // Timezone Paris
 
@@ -65,13 +46,12 @@ $files_to_watch = array(
     'api_core/ApiMisc.php',
     'api_core/ApiSessionActive.php',
     'api_core/ApiToken.php',
-    'api_core/Config.php',
-    'api_core/modules/ApiCaptcha.php',
-    'api_core/modules/ApiInternalMail.php',
-    'api_core/modules/PHPMailer_Main.php',
-    'api_core/modules/PHPMailer_SMTP.php',
-    'api_core/modules/PreventSpamIP.php',
-    'api_core/modules/PreventSpamMail.php',
+    'api_core/ApiCaptcha.php',
+    'api_core/ApiInternalMail.php',
+    'api_core/dependencies/PHPMailer_Main.php',
+    'api_core/dependencies/PHPMailer_SMTP.php',
+    'api_core/dependencies/PreventSpamIP.php',
+    'api_core/dependencies/PreventSpamMail.php',
     'views/Html.php',
     'views/Json.php',
     'views/Xml.php',
