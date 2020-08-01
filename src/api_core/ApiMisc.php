@@ -108,6 +108,35 @@ class ApiMisc
 
     /**
      * Type GETTER
+     * Retourne les méthods de requêtes
+     *
+     * return {array}
+     */
+    private static function REQUEST_METHOD()
+    {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET': // Lecture de données
+                $request = $_GET;
+                break;
+            case 'POST': // Création/Ajout de données
+                $request = $_POST;
+                break;
+            case 'PUT': // Mise à jour des données
+                parse_str(file_get_contents('php://input'), $_PUT);
+                $request = $_PUT;
+                break;
+            case 'DELETE': // Suppression de données
+                parse_str(file_get_contents('php://input'), $_DELETE);
+                $request = $_DELETE;
+                break;
+            default:
+                $request = [];
+        }
+        return $request;
+    }
+
+    /**
+     * Type GETTER
      * Recupère les paramètres de la requete d'envoi et les nettoie pour être utilisé.
      * Stock les données de la requete cliente en cache afin d'eviter de nettoyer indéfiniment
      * no return
@@ -117,25 +146,7 @@ class ApiMisc
     {
         if (!isset(self::$REQUEST_METHOD)) {
             self::$REQUEST_METHOD = [];
-
-            switch ($_SERVER['REQUEST_METHOD']) {
-                case 'GET': // Lecture de données
-                    $request = $_GET;
-                    break;
-                case 'POST': // Création/Ajout de données
-                    $request = $_POST;
-                    break;
-                case 'PUT': // Mise à jour des données
-                    parse_str(file_get_contents('php://input'), $_PUT);
-                    $request = $_PUT;
-                    break;
-                case 'DELETE': // Suppression de données
-                    parse_str(file_get_contents('php://input'), $_DELETE);
-                    $request = $_DELETE;
-                    break;
-                default:
-                    $request = [];
-            }
+            $request = self::REQUEST_METHOD();
 
             foreach ($request as $key => $value) {
                 self::$REQUEST_METHOD[$key] = self::sanitize_string($value);
@@ -150,11 +161,14 @@ class ApiMisc
      *
      * return {array}
      */
-    public static function REQ_DATA()
+    public static function REQ_DATA($not_sanitize = false)
     {
-        self::REQUEST_METHOD_SANITIZE_DATA();
-
-        return isset(self::$REQUEST_METHOD) ? self::$REQUEST_METHOD : [];
+        if ($not_sanitize) {
+            return self::REQUEST_METHOD();
+        } else {
+            self::REQUEST_METHOD_SANITIZE_DATA();
+            return isset(self::$REQUEST_METHOD) ? self::$REQUEST_METHOD : [];
+        }
     }
 
     /**

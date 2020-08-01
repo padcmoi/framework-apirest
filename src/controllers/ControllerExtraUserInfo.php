@@ -62,7 +62,7 @@ class ControllerExtraUserInfo
             `citycode` varchar(10) NOT NULL DEFAULT '00000',
             `city` varchar(50) NOT NULL DEFAULT '',
             UNIQUE KEY `id_account` (`id_account`),
-            CONSTRAINT `account_extra_info_related_id` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            CONSTRAINT `account_extra_info_id_account` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
             COMMIT;

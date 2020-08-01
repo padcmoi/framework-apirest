@@ -15,7 +15,9 @@ if (!isset($security_include_identifier)) {
 class ControllerAnonymousMail
 {
     use MixinsUtilsCaptcha,
-        MixinsUtilsSendmail;
+        MixinsUtilsSendmail
+
+    ;
 
     private static $instance;
     private function __construct()

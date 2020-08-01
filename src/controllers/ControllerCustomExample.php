@@ -14,12 +14,12 @@ class ControllerCustomExample
      * Pour de l'heritage multiple, plus fléxible que les namespace
      * chaque librairie peut etre stocké dans le dossier /mixins/
      */
-    use CustomLibrarie1,  CustomLibrarie2,  CustomLibrarie3;
+    // use CustomLibrarie1,  CustomLibrarie2,  CustomLibrarie3;
 
     private static $instance;
     private function __construct()
     {
-        $this->pdo_db  = ApiDatbase::__instance_singleton()->pdo_useDB();
+        $this->pdo_db = ApiDatabase::__instance_singleton()->pdo_useDB();
         $this->require_table();
     }
     /**

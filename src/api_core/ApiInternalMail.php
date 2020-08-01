@@ -67,7 +67,7 @@ class ApiInternalMail
             `type` ENUM('recover_password','account_enable','change_email','close_account','recover_personnal_data') NULL DEFAULT NULL,
             UNIQUE KEY `id_account` (`id_account`),
             UNIQUE KEY `hash_to_return` (`hash_to_return`),
-            CONSTRAINT `account_internal_mail_related_id` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            CONSTRAINT `account_internal_mail_id_account` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
             COMMIT;
@@ -178,12 +178,11 @@ class ApiInternalMail
 
         if ($html_format) {
             $opt = $recover_data ? '<a href="' . ApiMisc::getFullUrl() . '/api/action/cancel?hash_to_return=' . $recover_data . '">Annuler cette demande</a>' : '';
-            return $opt . '<hr/><div align="right"><h6><strong>développé par www.naskot.fr</strong> ' . date('Y') . ' <em>tous droits réserves</em><br/><a href="' . ApiMisc::getFullUrl() . '/api/mail/unsubscribe?hash_to_return=' . $hash_unsubscribe . '" >lien pour se désabonner</a ></h6></div>';
+            return $opt . '<hr/><div align="right"><h6><strong>' . Config::OwnerMail()['footerMessage'] . '</strong> ' . date('Y') . ' <em>tous droits réserves</em><br/><a href="' . ApiMisc::getFullUrl() . '/api/mail/unsubscribe?hash_to_return=' . $hash_unsubscribe . '" >lien pour se désabonner</a ></h6></div>';
         } else {
             $opt = $recover_data ? ' Annuler cette demande: ' . ApiMisc::getFullUrl() . '/api/action/cancel?hash_to_return=' . $recover_data : '';
 
-            return $opt . '
-             développé par www.naskot.fr' . date('Y') . ' tous droits réserves - ' . ApiMisc::getFullUrl() . '/api/mail/unsubscribe?hash_to_return=' . $hash_unsubscribe;
+            return $opt . Config::OwnerMail()['footerMessage'] . date('Y') . ' tous droits réserves - ' . ApiMisc::getFullUrl() . '/api/mail/unsubscribe?hash_to_return=' . $hash_unsubscribe;
         }
     }
 
@@ -233,7 +232,7 @@ class ApiInternalMail
                     'password' => ApiAuthentification::__instance_singleton()->hash_password($new_password),
                 ], ['id' => intval($req[0]['id_account'])], 1);
 
-                $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                 $this->mail->addAddress($account[0]['email'], $account[0]['email']);
                 $this->mail->Subject = 'Nouveau mot de passe';
                 $this->mail->isHTML(true);
@@ -301,7 +300,7 @@ class ApiInternalMail
                     $result = ApiDatabase::__instance_singleton()->pdo_insert(Config::Database()['prefix'] . 'internal_mail', $recover_data);
 
                     if ($result) {
-                        $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                        $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                         $this->mail->addAddress($req[0]['email'], $req[0]['email']);
                         $this->mail->Subject = 'Demande de nouveau mot de passe';
                         $this->mail->isHTML(true);
@@ -394,7 +393,7 @@ class ApiInternalMail
                 if ($result) {
                     // ApiCacheData::__instance_singleton()->add(array('auth_response' => 'send_mailcode_email'));
 
-                    $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                    $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                     $this->mail->addAddress($account[0]['email'], $account[0]['email']);
                     $this->mail->Subject = 'Veuillez confirmer votre email pour activer votre compte';
                     $this->mail->isHTML(true);
@@ -448,7 +447,7 @@ class ApiInternalMail
                     if ($result) {
                         ApiCacheData::__instance_singleton()->add(array('auth_response' => 'send_mailcode_email'));
 
-                        $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                        $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                         $this->mail->addAddress($new_email, $new_email);
                         $this->mail->Subject = 'Changement d\'adresse email';
                         $this->mail->isHTML(true);
@@ -574,7 +573,7 @@ class ApiInternalMail
                     if ($result) {
                         ApiCacheData::__instance_singleton()->add(array('auth_response' => 'send_mail_closing_account'));
 
-                        $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                        $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                         $this->mail->addAddress($account[0]['email'], $account[0]['email']);
                         $this->mail->Subject = 'Demande de fermeture de compte';
                         $this->mail->isHTML(true);
@@ -663,7 +662,7 @@ class ApiInternalMail
                     if ($result) {
                         ApiCacheData::__instance_singleton()->add(array('auth_response' => 'send_mail_personnal_data_ready'));
 
-                        $this->mail->setFrom('noreply@naskot.fr', $_SERVER['SERVER_NAME']);
+                        $this->mail->setFrom(Config::OwnerMail()['originMail'], $_SERVER['SERVER_NAME']);
                         $this->mail->addAddress($account[0]['email'], $account[0]['email']);
                         $this->mail->Subject = 'Vos données personnelles sont disponible';
                         $this->mail->isHTML(true);

@@ -114,6 +114,7 @@ class Config
     public static function OwnerMail()
     {
         return [
+            'originMail' => '__A_RENSEIGNER__',
             'destEmail' => '__A_RENSEIGNER__',
             'footerMessage' => '__A_RENSEIGNER__',
         ];

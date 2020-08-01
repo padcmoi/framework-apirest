@@ -32,7 +32,7 @@ trait PreventSpamMail
             `email` varchar(80) NOT NULL,
             `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             UNIQUE KEY `id_account` (`id_account`),
-            CONSTRAINT `account_mail_preventspam_related_id` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            CONSTRAINT `account_mail_preventspam_id_account` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
             COMMIT;

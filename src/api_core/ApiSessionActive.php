@@ -57,7 +57,7 @@ class ApiSessionActive
                 `jwt_hash` varchar(32) NOT NULL,
                 `last_access_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE KEY `id_account` (`id_account`),
-                CONSTRAINT `account_session_active_related_id` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                CONSTRAINT `account_session_active_id_account` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
             COMMIT;
