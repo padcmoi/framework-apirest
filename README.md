@@ -1,6 +1,6 @@
-# API REST FRAMEWORK PHP7
+# 📦 API REST FRAMEWORK PHP7 📦
 
-### Framework API Rest pour PHP7, conçu pour être simple d’utilisation, pour un développement rapide.
+### 📦 Framework API Rest pour PHP7, conçu pour être simple d’utilisation, pour un développement rapide.
 
 C’est un projet libre, contributeurs vous êtes les bienvenues.
 
@@ -14,7 +14,10 @@ Le projet est une API Rest écrit avec PHP7 et fonctionnant avec une
 
 Le point fort de ce projet est dans sa conception en framework, modifiable et libre, il a pour objectif d’être simplifié, évolutif et restera libre.
 
-### L’objectif de ce projet est de pouvoir développer rapidement une API répondant aux exigences suivantes :
+Vous pouvez m'aider à l'améliorer, l'utiliser dans vos projets personnels ou professionnels.
+
+
+## 📝 L’objectif de ce projet est de pouvoir développer rapidement une API répondant aux exigences suivantes :
 
 • Sécurité, nous utiliserons ce qui se fait de mieux en matière de sécurité(
 
@@ -25,11 +28,11 @@ Le point fort de ce projet est dans sa conception en framework, modif
 
 • Un ensemble de method static accessible dans n’importe quel Class prédéfini comme par exemple:
 
-> REQUEST_METHOD_DATA() qui permet la récupération des données cumulé à un nettoyage automatique des données en formulaire (\*à partir de la v1.3b) désactivable en argument si besoin.
+> REQ_DATA() qui permet la récupération des données cumulé à un nettoyage automatique des données en formulaire (\*à partir de la v1.3b) désactivable en argument si besoin.
 
 > getMyId() qui permet de retourner l’ID du jeton contenu dans le JsonWebToken du client.
 
-• Vérification des champs de formulaire, voir (REQUEST_METHOD_DATA()).
+• Vérification des champs de formulaire, voir (REQ_DATA()).
 
 • Conception orienté objet.
 
@@ -45,7 +48,7 @@ Le point fort de ce projet est dans sa conception en framework, modif
 
 > router() afin de recueillir les requêtes clientes de type URN pour nom uniforme de ressource ( \*voir documentation rfc.2141 ).
 
-### Un template de base est proposé sous cette forme :
+## 📝 Un template de base est proposé sous cette forme :
 
 ```php
 class ControllerCustomExample
@@ -118,4 +121,30 @@ class ControllerCustomExample
 }
 ```
 
-### Comment installer (à venir ...)
+## 🔖 Licence
+
+Ce logiciel est sous licence [CC BY-SA 3.0 FR](/LICENSE.md).
+
+## 🚚 Installation
+
+
+### Télécharger le framework via GIT clone
+```
+git clone https://gitlab.com/juliennaskot/framework-apirest
+```
+
+### Paramétrage du framework
+```
+edit config.env.php
+```
+
+## Installation des librairies de composer
+```
+composer install
+```
+
+
+## 🍺 Si vous souhaitez m’offrir une bière
+
+
+😍 [PAYPAL](https://www.paypal.com/paypalme/Julien06100?locale.x=fr_FR)

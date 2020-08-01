@@ -1,0 +1,8 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule "composer.json" "-" [F]
+RewriteRule "composer.lock" "-" [F]
+RewriteRule ^vendor/(.*) "-" [F]
+RewriteRule ".exe" "-" [F]
+RewriteRule ^srv$  api.php?$1 [L]
+RewriteRule ^srv/(.*) api.php/$1
