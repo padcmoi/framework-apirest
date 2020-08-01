@@ -135,11 +135,13 @@ git clone https://gitlab.com/juliennaskot/framework-apirest
 
 ### Paramétrage du framework
 ```
+cd src
 edit config.env.php
 ```
 
 ## Installation des librairies de composer
 ```
+cd src
 composer install
 ```
 
