@@ -57,12 +57,12 @@ class ControllerCustomExample
      * Pour de l'heritage multiple, plus fléxible que les namespace
      * chaque librairie peut etre stocké dans le dossier /mixins/
      */
-    use CustomLibrarie1,  CustomLibrarie2,  CustomLibrarie3;
+    use customLibrairie1, otherCustomLibrarie2, customLibrarie3;
 
     private static $instance;
     private function __construct()
     {
-        $this->pdo_db  = ApiDatbase::__instance_singleton()->pdo_useDB();
+        $this->pdo_db = ApiDatabase::__instance_singleton()->pdo_useDB();
         $this->require_table();
     }
     /**
@@ -86,10 +86,11 @@ class ControllerCustomExample
      */
     private function require_table()
     {
+        $prefix = Config::Database()['prefix'];
         $this->pdo_db->exec("
             START TRANSACTION;
 
-            CREATE TABLE IF NOT EXISTS `" . Config::Database()['prefix'] . "example` (
+            CREATE TABLE IF NOT EXISTS `" . $prefix . "example` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
