@@ -146,8 +146,9 @@ cd src
 composer install
 ```
 
+## Si vous souhaitez rejoindre le discord du projet
+🟨 [DISCORD du projet](https://discord.gg/257rUb9)
+
 
 ## 🍺 Si vous souhaitez m’offrir une bière
-
-
 😍 [PAYPAL](https://www.paypal.com/paypalme/Julien06100?locale.x=fr_FR)
