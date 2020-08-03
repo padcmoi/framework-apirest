@@ -2,13 +2,6 @@
 
 # Attribution - Partage à l'identique 3.0 France (CC BY-SA 3.0 FR)
 
-```
-Creative Commons Corporation n'est pas un cabinet d'avocats et ne fournit pas de conseil
-juridique. La distribution de cette licence ne crée aucune relation juridique entre les parties et
-Creative Commons. Creative Commons met à disposition ces informations en l’état. Creative
-Commons ne donne aucune garantie concernant les informations fournies et décline toute
-responsabilité pour les préjudices qui résulteraient de leur utilisation.
-```
 ## Licence
 
 **L’œuvre (telle que définie ci-dessous) est mise à disposition selon les termes de cette Licence
