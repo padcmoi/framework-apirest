@@ -244,9 +244,8 @@ class ApiInternalMail
                     ' . $this->generateFooter(false) . '
                 ';
 
-                $this->mail->send();
-
                 $this->addMailPreventSpammer($account[0]['email']);
+                $this->mail->send();
 
                 ApiDatabase::__instance_singleton()->pdo_delete(Config::Database()['prefix'] . 'internal_mail', ['hash_to_return' => $hash_to_return]);
 
@@ -317,9 +316,8 @@ class ApiInternalMail
                         ' . $this->generateFooter(false, $recover_data['hash_to_return']) . '
                         ';
 
-                        $this->mail->send();
-
                         $this->addMailPreventSpammer($req[0]['email']);
+                        $this->mail->send();
 
                         ApiCacheData::__instance_singleton()->add(array('auth_response' => 'send_mailcode_password'));
                     } else {
@@ -405,9 +403,8 @@ class ApiInternalMail
                         ' . $this->generateFooter(false) . '
                     ';
 
-                    $this->mail->send();
-
                     $this->addMailPreventSpammer($account[0]['email']);
+                    $this->mail->send();
 
                     ApiDatabase::__instance_singleton()->pdo_update(Config::Database()['prefix'] . 'account', ['enable' => 0], ['id' => intval($id)], 1);
 
@@ -459,9 +456,9 @@ class ApiInternalMail
                         ' . $this->generateFooter(false, $recover_data['hash_to_return']) . '
                         ';
 
+                        $this->addMailPreventSpammer($new_email);
                         $this->mail->send();
 
-                        $this->addMailPreventSpammer($new_email);
                     } else {
                         ApiCacheData::__instance_singleton()->add_check_input(['email_code_already_sent']);
                     }
@@ -593,9 +590,9 @@ class ApiInternalMail
                         ' . $this->generateFooter(false, $recover_data['hash_to_return']) . '
                         ';
 
+                        $this->addMailPreventSpammer($account[0]['email']);
                         $this->mail->send();
 
-                        $this->addMailPreventSpammer($account[0]['email']);
                     } else {
                         ApiCacheData::__instance_singleton()->add_check_input(['email_code_already_sent']);
                     }
@@ -678,9 +675,9 @@ class ApiInternalMail
                         ' . $this->generateFooter(false) . '
                         ';
 
+                        $this->addMailPreventSpammer($account[0]['email']);
                         $this->mail->send();
 
-                        $this->addMailPreventSpammer($account[0]['email']);
                     } else {
                         ApiCacheData::__instance_singleton()->add_check_input(['email_code_already_sent']);
                     }
