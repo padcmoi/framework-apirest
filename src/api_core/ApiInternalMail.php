@@ -60,12 +60,11 @@ class ApiInternalMail
             CREATE TABLE IF NOT EXISTS `" . Config::Database()['prefix'] . "internal_mail` (
             `sql_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             `id_account` int(11) NOT NULL,
+            `type` varchar(80) NOT NULL,
             `can_expire` BOOLEAN NOT NULL DEFAULT TRUE,
             `hash_to_return` varchar(128) NOT NULL,
             `email` varchar(80) NOT NULL,
             `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `type` ENUM('recover_password','account_enable','change_email','close_account','recover_personnal_data') NULL DEFAULT NULL,
-            UNIQUE KEY `id_account` (`id_account`),
             UNIQUE KEY `hash_to_return` (`hash_to_return`),
             CONSTRAINT `account_internal_mail_id_account` FOREIGN KEY (`id_account`) REFERENCES `" . Config::Database()['prefix'] . "account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
