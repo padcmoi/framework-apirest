@@ -94,6 +94,18 @@ class Config
     }
 
     /**
+     * @param SECONDS_MAIL - Nombres de secondes avant de purger les entrées.
+     * @param SECONDS_IP - Nombres de secondes avant de purger les entrées.
+     */
+    public static function PurgeAntiSpam()
+    {
+        return [
+            'SECONDS_MAIL' => 60,
+            'SECONDS_IP' => 90,
+        ];
+    }
+
+    /**
      * Credentials Mail
      */
     public static function Mail()

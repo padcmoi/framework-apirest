@@ -36,7 +36,7 @@ trait PreventSpamIP
             COMMIT;
         ");
 
-        ApiDatabase::__instance_singleton()->pdo_useDB()->exec("DELETE FROM `" . Config::Database()['prefix'] . "preventspam_ip` WHERE TIME_TO_SEC(TIMEDIFF(CURRENT_TIMESTAMP, created)) > 90;");
+        ApiDatabase::__instance_singleton()->pdo_useDB()->exec("DELETE FROM `" . Config::Database()['prefix'] . "preventspam_ip` WHERE TIME_TO_SEC(TIMEDIFF(CURRENT_TIMESTAMP, created)) > " . intval(Config::PurgeAntiSpam()['SECONDS_IP']) . ";");
     }
 
     /**
