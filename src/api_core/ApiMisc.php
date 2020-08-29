@@ -95,15 +95,38 @@ class ApiMisc
 
     /**
      * Type GETTER
+     * Recherche la position dans un tableau.
+     * @param {array} $array - Tableau à vérifier.
+     * @param {string} $word - Mot à rechercher.
+     *
+     * return {Int} - Clé de la position dans le tableau ou -1 pour non trouvé
+     */
+    public static function indexOf(array $array, string $word)
+    {
+        foreach ($array as $key => $value) {
+            if ($value === $word) {
+                return $key;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Type GETTER
      * Traite les champs envoyés par le client et nettoie.
+     * @param {string} $string - Texte à nettoyer.
+     * @param {array} $ignore - Liste à ignorer.
      *
      * return {string}
      */
-    public static function sanitize_string(string $string)
+    public static function sanitize_string(string $string, array $ignore = [])
     {
-        $string = htmlspecialchars($string);
-        $string = trim($string);
-        return stripslashes($string);
+        $string = self::indexOf($ignore, 'strip_tags') === -1 ? strip_tags($string) : $string;
+        $string = self::indexOf($ignore, 'htmlspecialchars') === -1 ? htmlspecialchars($string) : $string;
+        $string = self::indexOf($ignore, 'trim') === -1 ? trim($string) : $string;
+        $string = self::indexOf($ignore, 'stripslashes') === -1 ? stripslashes($string) : $string;
+        return $string;
     }
 
     /**
