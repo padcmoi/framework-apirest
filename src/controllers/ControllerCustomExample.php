@@ -64,15 +64,16 @@ class ControllerCustomExample
             case 'GET': // Lecture de données
                 if (ApiMisc::isRouteUsed('show/me/example/list')) {}
                 break;
-            case 'POST': // Création/Ajout de données
+            case 'POST' && ApiToken::__instance_singleton()->isValidated(): // Création/Ajout de données
                 if (ApiMisc::isRouteUsed('add/me/example')) {}
                 break;
-            case 'PUT': // Mise à jour des données
+            case 'PUT' && ApiToken::__instance_singleton()->isValidated(): // Mise à jour des données
                 if (ApiMisc::isRouteUsed('change/me/example')) {}
                 break;
-            case 'DELETE': // Suppression de données
+            case 'DELETE' && ApiToken::__instance_singleton()->isValidated(): // Suppression de données
                 if (ApiMisc::isRouteUsed('delete/me/example')) {}
                 break;
         }
+
     }
 }

@@ -71,33 +71,33 @@ class ControllerExtraUserInfo
 
     private function router()
     {
-
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET': // Lecture de données
-                if (ApiMisc::isRouteUsed('api/personnal/info')) {
-                    $this->get();
-                }
-                break;
-            case 'POST': // Création/Ajout de données
-                if (ApiMisc::isRouteUsed('api/auth/login')) {
-                    $this->get();
-                }
-                if (ApiMisc::isRouteUsed('api/auth/register')) {
-                    $this->insert();
-                }
-                break;
-            case 'PUT': // Mise à jour des données
-                if (ApiMisc::isRouteUsed('api/auth/change')) {
-                    $this->change();
-                }
-                break;
-            case 'DELETE': // Suppression de données
-                if (ApiMisc::isRouteUsed('api/auth/logout')) {
-                    $this->logout();
-                }
-                break;
+        if (ApiToken::__instance_singleton()->isValidated()) {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET': // Lecture de données
+                    if (ApiMisc::isRouteUsed('api/personnal/info')) {
+                        $this->get();
+                    }
+                    break;
+                case 'POST': // Création/Ajout de données
+                    if (ApiMisc::isRouteUsed('api/auth/login')) {
+                        $this->get();
+                    }
+                    if (ApiMisc::isRouteUsed('api/auth/register')) {
+                        $this->insert();
+                    }
+                    break;
+                case 'PUT': // Mise à jour des données
+                    if (ApiMisc::isRouteUsed('api/auth/change')) {
+                        $this->change();
+                    }
+                    break;
+                case 'DELETE': // Suppression de données
+                    if (ApiMisc::isRouteUsed('api/auth/logout')) {
+                        $this->logout();
+                    }
+                    break;
+            }
         }
-
     }
 
 }

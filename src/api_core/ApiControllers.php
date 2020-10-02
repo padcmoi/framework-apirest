@@ -22,12 +22,11 @@ require_once 'SecurityIncludeIdentifier.php'; // Empeche le chargement de cette 
  * Si la method $api_authentification->isLogged() vaut true c'est que la communication avec la base de données est autorisé
  * et le client est connecté.
  */
-if (ApiToken::__instance_singleton()->isValidated()) {
-    foreach (new DirectoryIterator("controllers/") as $file) {
-        if ($file->isDot() || $file->getExtension() !== 'php') {
-            continue;
-        }
 
-        ApiMisc::instanceClass($file->getBasename('.php'), 'router', false, false);
+foreach (new DirectoryIterator("controllers/") as $file) {
+    if ($file->isDot() || $file->getExtension() !== 'php') {
+        continue;
     }
+
+    ApiMisc::instanceClass($file->getBasename('.php'), 'router', false, false);
 }

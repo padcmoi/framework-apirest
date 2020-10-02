@@ -42,20 +42,21 @@ class ControllerAnonymousMail
 
     private function router()
     {
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET': // Lecture de données
-                break;
-            case 'POST': // Création/Ajout de données
-                if (ApiMisc::isRouteUsed('anonymous/send/mail')) {
-                    $this->customMessage();
-                }
-                break;
-            case 'PUT': // Mise à jour des données
-                break;
-            case 'DELETE': // Suppression de données
-                break;
+        if (ApiToken::__instance_singleton()->isValidated()) {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET': // Lecture de données
+                    break;
+                case 'POST': // Création/Ajout de données
+                    if (ApiMisc::isRouteUsed('anonymous/send/mail')) {
+                        $this->customMessage();
+                    }
+                    break;
+                case 'PUT': // Mise à jour des données
+                    break;
+                case 'DELETE': // Suppression de données
+                    break;
+            }
         }
-
     }
 
     private function customMessage()
