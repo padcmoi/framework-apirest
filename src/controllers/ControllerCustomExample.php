@@ -60,20 +60,21 @@ class ControllerCustomExample
      */
     private function router()
     {
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET': // Lecture de données
-                if (ApiMisc::isRouteUsed('show/me/example/list')) {}
-                break;
-            case 'POST' && ApiToken::__instance_singleton()->isValidated(): // Création/Ajout de données
-                if (ApiMisc::isRouteUsed('add/me/example')) {}
-                break;
-            case 'PUT' && ApiToken::__instance_singleton()->isValidated(): // Mise à jour des données
-                if (ApiMisc::isRouteUsed('change/me/example')) {}
-                break;
-            case 'DELETE' && ApiToken::__instance_singleton()->isValidated(): // Suppression de données
-                if (ApiMisc::isRouteUsed('delete/me/example')) {}
-                break;
+        if (ApiToken::__instance_singleton()->isValidated()) {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET': // Lecture de données
+                    if (ApiMisc::isRouteUsed('example/number1')) {}
+                    break;
+                case 'POST': // Création/Ajout de données
+                    if (ApiMisc::isRouteUsed('example/number1')) {}
+                    break;
+                case 'PUT': // Mise à jour des données
+                    if (ApiMisc::isRouteUsed('example/number1')) {}
+                    break;
+                case 'DELETE': // Suppression de données
+                    if (ApiMisc::isRouteUsed('example/number1')) {}
+                    break;
+            }
         }
-
     }
 }
